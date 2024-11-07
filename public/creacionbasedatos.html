@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica Profesional III</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .table-container {
+            width: 600px; /* Ajusta el ancho del cuadro */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin: 0 auto; /* Centrar el cuadro */
+        }
+        .btn-delete {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .btn-more {
+            margin-left: 15px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center; /* Alinea los elementos verticalmente al centro */
+            margin-bottom: 15px; /* Mayor separación entre filas */
+        }
+        .input-field {
+            flex: 1; /* Hace que el campo de texto se expanda según sea necesario */
+        }
+        .btn-more select {
+            margin-right: 10px;
+        }
+        .login-button, #add-column-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+        /* Agrega margen entre los botones */
+        #add-column-btn {
+            margin-bottom: 20px; /* Espacio entre los dos botones */
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h1 class="login-title">DATABYTE</h1>
+        <h3>Nombre Base de datos</h3> <br>
+        <input type="text" class="input-field">
+        <br>
+        <!-- 
+        <h4>Nombre de la Columna</h4> <br>
+        <div id="columns-container">
+            <div class="input-group">
+                <input type="text" class="input-field">
+                <button class="btn-more">
+                    
+                    <label for="opciones">Formato:</label>
+                    <select id="opciones">
+                        <option value="texto">Texto</option>
+                        <option value="numeros">Números</option>
+                    </select>
+                    
+                </button>
+                <button class="btn-delete">
+                    <img src="img/delete-button.svg" alt="Eliminar" width="24" height="24">
+                </button>
+            </div>
+        </div>
+        <button id="add-column-btn" class="btn-more">Agregar Columnas</button>
+        -->
+        <hr>
+        <table class="table">
+            <thead>
+              <tr>
+                <th class="table-header-name">Columnas</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="table-name">Arroz</th>
+                <td>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                    class="btn-edit">
+                    <img src="img/edit-3-svgrepo-com.svg">
+                </button>
+                </td>
+                <td>
+                  <button class="btn-delete" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <img src="img/delete-button.svg">
+                  </button>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+
+        <a href="columna.html"><button class=" btn btn-warning">Crear Nueva Columna</button></a>
+        <br>
+        <hr>
+        <br><br>
+        <a href="viewTables.html">
+            <button type="button" class="login-button">Crear Base de datos</button>
+        </a>
+        
+    </div>
+    <!-- Modal Edit-->
+    <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabelEdit"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabelEdit">Editar información</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="text-align: left;">
+            <form>
+              <div class="mb-3">
+                <input type="text" class="form-control" value="Arroz">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+
+    <script>
+        // Seleccionamos el contenedor de las columnas y el botón de agregar columnas
+        const columnsContainer = document.getElementById('columns-container');
+        const addColumnBtn = document.getElementById('add-column-btn');
+
+        // Función para agregar un nuevo conjunto de inputs para las columnas
+        addColumnBtn.addEventListener('click', function() {
+            // Crear un nuevo div para la columna
+            const newColumnGroup = document.createElement('div');
+            newColumnGroup.classList.add('input-group');
+            newColumnGroup.innerHTML = `
+                <h4>Nombre de la Columna:</h4>
+                <input type="text" class="input-field">
+                <button class="btn-more">
+                    <label for="opciones">Formato:</label>
+                    <select id="opciones">
+                        <option value="texto">Texto</option>
+                        <option value="numeros">Números</option>
+                    </select>
+                </button>
+                <button class="btn-delete">
+                    <img src="img/delete-button.svg" alt="Eliminar" width="24" height="24">
+                </button>
+            `;
+
+            // Añadir el nuevo conjunto de inputs al contenedor
+            columnsContainer.appendChild(newColumnGroup);
+
+            // Agregar funcionalidad para eliminar el conjunto de inputs cuando se haga clic en el botón eliminar
+            const deleteBtn = newColumnGroup.querySelector('.btn-delete');
+            deleteBtn.addEventListener('click', function() {
+                newColumnGroup.remove();  // Eliminar el contenedor del grupo de inputs
+            });
+        });
+
+        // Añadir funcionalidad para eliminar la columna inicial
+        const initialDeleteBtn = document.querySelector('.btn-delete');
+        initialDeleteBtn.addEventListener('click', function() {
+            initialDeleteBtn.parentElement.remove();  // Eliminar el contenedor de la primera columna
+        });
+    </script>
+</body>
+</html>
